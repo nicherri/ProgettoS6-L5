@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Cliente>
+
+<h2>Clienti</h2>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Codice Fiscale</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Cellulare</th>
+                <th>Città</th>
+                <th>Provincia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.Id</td>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.Cognome</td>
+                    <td>@cliente.CodiceFiscale</td>
+                    <td>@cliente.Email</td>
+                    <td>@cliente.Telefono</td>
+                    <td>@cliente.Cellulare</td>
+                    <td>@cliente.Citta</td>
+                    <td>@cliente.Provincia</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a asp-controller="Home" asp-action="Management" class="btn btn-secondary">Indietro</a>

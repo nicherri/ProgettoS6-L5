@@ -1,0 +1,54 @@
+﻿@using Hotel.Models
+@model List<Prenotazione>
+
+@{
+    ViewData["Title"] = "Risultati della Ricerca";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Prenotazione</th>
+                    <th>Data Prenotazione</th>
+                    <th>Numero Progressivo</th>
+                    <th>Anno</th>
+                    <th>Dal</th>
+                    <th>Al</th>
+                    <th>Caparra</th>
+                    <th>Tariffa</th>
+                    <th>Dettagli Soggiorno</th>
+                    <th>Cliente</th>
+                    <th>Camera</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prenotazione in Model)
+                {
+                    <tr>
+                        <td>@prenotazione.Id</td>
+                        <td>@prenotazione.DataPrenotazione.ToShortDateString()</td>
+                        <td>@prenotazione.NumeroProgressivo</td>
+                        <td>@prenotazione.Anno</td>
+                        <td>@prenotazione.Dal.ToShortDateString()</td>
+                        <td>@prenotazione.Al.ToShortDateString()</td>
+                        <td>@prenotazione.CaparraConfirmatoria</td>
+                        <td>@prenotazione.PrezzoTariffa</td>
+                        <td>@prenotazione.DettagliSoggiornoId</td>
+                        <td>@prenotazione.ClienteId</td>
+                        <td>@prenotazione.CameraId</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a asp-controller="Home" asp-action="Management" class="btn btn-secondary">Indietro</a>
+}
+else
+{
+    <p>Nessun risultato trovato.</p>
+}

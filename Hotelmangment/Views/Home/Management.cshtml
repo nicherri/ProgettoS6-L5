@@ -1,0 +1,26 @@
+﻿<link rel="stylesheet" href="~/css/management.css" />
+<div class="container text-center d-flex flex-column align-items-center">
+    <h2>Cosa vuoi fare?</h2>
+    <div class="row">
+        <div class="col-5">
+            <h3>Camere</h3>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Creazioni" asp-action="CreazioneCamera">Creazione Camera</a>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Visualizzazioni" asp-action="VisualizzaCamere">Visualizza Camere</a>
+        </div>
+        <div class="col-5">
+            <h3>Clienti</h3>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Creazioni" asp-action="CreazioneCliente">Creazione Cliente</a>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Visualizzazioni" asp-action="VisualizzaClienti">Visualizza Clienti</a>
+        </div>
+        <div class="col-5">
+            <h3>Prenotazioni</h3>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Creazioni" asp-action="CreazionePrenotazione">Creazione Prenotazione</a>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Visualizzazioni" asp-action="VisualizzaPrenotazioni">Visualizza Prenotazioni</a>
+        </div>
+        <div class="col-5">
+            <h3>Ricerche</h3>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Ricerche" asp-action="RicercaByCF">Ricerca by CF</a>
+            <a class="rout nav-link text-dark" asp-area="" asp-controller="Ricerche" asp-action="RicercaByTipoPensione">Ricerca by Tipo Pensione</a>
+        </div>
+    </div>
+</div>

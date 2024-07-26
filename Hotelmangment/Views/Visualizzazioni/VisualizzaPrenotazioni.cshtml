@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Hotel.Models.Prenotazione>
+
+@{
+    ViewData["Title"] = "Visualizza Prenotazioni";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Data Prenotazione</th>
+                <th>Numero Progressivo</th>
+                <th>Anno</th>
+                <th>Dal</th>
+                <th>Al</th>
+                <th>Caparra Confirmatoria</th>
+                <th>Prezzo Tariffa</th>
+                <th>Dettagli Soggiorno</th>
+                <th>Cliente</th>
+                <th>Camera</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prenotazione in Model)
+            {
+                <tr>
+                    <td>@prenotazione.Id</td>
+                    <td>@prenotazione.DataPrenotazione.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@prenotazione.NumeroProgressivo</td>
+                    <td>@prenotazione.Anno</td>
+                    <td>@prenotazione.Dal.ToString("yyyy-MM-dd")</td>
+                    <td>@prenotazione.Al.ToString("yyyy-MM-dd")</td>
+                    <td>@prenotazione.CaparraConfirmatoria.ToString("C")</td>
+                    <td>@prenotazione.PrezzoTariffa.ToString("C")</td>
+                    <td>@prenotazione.DettagliSoggiornoId</td>
+                    <td>@prenotazione.ClienteId</td>
+                    <td>@prenotazione.CameraId</td>
+                    <td>
+                        <a asp-controller="ServiziAggiuntivi" asp-action="AddServizioAgg" asp-route-idPrenotazione="@prenotazione.Id" class="btn btn-primary">Aggiungi servizi aggiuntivi</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a asp-controller="Home" asp-action="Management" class="btn btn-secondary">Indietro</a>

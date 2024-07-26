@@ -1,0 +1,29 @@
+﻿@using Hotel.Models.ViewModels
+@model RicercaPrenotazioneByCFViewModel
+
+<link rel="stylesheet" href="~/css/creazioni.css" />
+@{
+    ViewData["Title"] = "Cerca Prenotazioni";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="container">
+    <form id="searchByCFForm" method="post" action="@Url.Action("RicercaByCF", "Ricerche")">
+        @Html.AntiForgeryToken()
+        <div class="form-group d-flex flex-column align-items-center">
+            <label asp-for="CodiceFiscale" class="control-label text-center fs-2">Codice Fiscale</label>
+            <input asp-for="CodiceFiscale" class="form-control fs-2" />
+            <span asp-validation-for="CodiceFiscale" class="text-danger fw-bold"></span>
+        </div>
+        <div class="centerbtn">
+            <button type="submit" class="btns btn-primary">Cerca</button>
+        </div>
+    </form>
+</div>
+<a asp-controller="Home" asp-action="Management" class="btn btn-secondary">Indietro</a>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

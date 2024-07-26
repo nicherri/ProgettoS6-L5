@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Hotel.Models.Camera>
+
+<h2>Camere</h2>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrizione</th>
+                <th>Posto Letto</th>
+                <th>Tipologia Camera</th>
+                <th>Prezzo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var camera in Model)
+            {
+                <tr>
+                    <td>@camera.Id</td>
+                    <td>@camera.Descrizione</td>
+                    <td>@camera.PostoLetto</td>
+                    <td>@camera.TipologiaCameraId</td>
+                    <td>@camera.Prezzo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a asp-controller="Home" asp-action="Management" class="btn btn-secondary">Indietro</a>
