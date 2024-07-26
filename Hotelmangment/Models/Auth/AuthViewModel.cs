@@ -1,4 +1,4 @@
-﻿namespace Project.Models.Auth
+﻿namespace Hotelmangment.Models.Auth
 {
     public class AuthViewModel
     {

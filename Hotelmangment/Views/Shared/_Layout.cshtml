@@ -21,49 +21,63 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Creazioni
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/Creazione/CreazionePersona">Creazione Persona</a>
-                            <a class="dropdown-item" href="/Creazione/CreazioneCamera">Creazione Camera</a>
-                            <a class="dropdown-item" href="/Creazione/CreazionePrenotazione">Creazione Prenotazione</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Ricerche
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/Ricerche/RicercaByCF">Ricerca per Codice Fiscale</a>
-                            <a class="dropdown-item" href="/Ricerche/RicercaByTipoPensione">Ricerca per Tipo Pensione</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Visualizzazioni
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/Visualizzazioni/VisualizzaPersone">Visualizza Persone</a>
-                            <a class="dropdown-item" href="/Visualizzazioni/VisualizzaCamere">Visualizza Camere</a>
-                            <a class="dropdown-item" href="/Visualizzazioni/VisualizzaPrenotazioni">Visualizza Prenotazioni</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Servizi Aggiuntivi
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/ServiziAggiuntivi/AddServizioAgg">Aggiungi Servizio Aggiuntivo</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Auth/Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Auth/Register">Register</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Creazioni
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/Creazione/CreazionePersona">Creazione Persona</a>
+                                <a class="dropdown-item" href="/Creazione/CreazioneCamera">Creazione Camera</a>
+                                <a class="dropdown-item" href="/Creazione/CreazionePrenotazione">Creazione Prenotazione</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ricerche
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/Ricerche/RicercaByCF">Ricerca per Codice Fiscale</a>
+                                <a class="dropdown-item" href="/Ricerche/RicercaByTipoPensione">Ricerca per Tipo Pensione</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Visualizzazioni
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/Visualizzazioni/VisualizzaPersone">Visualizza Persone</a>
+                                <a class="dropdown-item" href="/Visualizzazioni/VisualizzaCamere">Visualizza Camere</a>
+                                <a class="dropdown-item" href="/Visualizzazioni/VisualizzaPrenotazioni">Visualizza Prenotazioni</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Servizi Aggiuntivi
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/ServiziAggiuntivi/AddServizioAgg">Aggiungi Servizio Aggiuntivo</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Auth/Logout">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Auth/Login">Accedi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Auth/Register">Registrati</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>
@@ -76,7 +90,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Hotel Management - <a href="/Home/Privacy">Privacy</a>
+            &copy; 2023 - Hotel Management by NICOLA SCHIRRIPA- <a href="/Home/Privacy">Privacy</a>
         </div>
     </footer>
 

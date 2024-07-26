@@ -1,35 +1,27 @@
-using Hotel.Data;
+using Hotelmangment.Data;
+using Hotelmangment.Services.Auth;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Project.Services.Auth;
-using Project.Services.Management;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurazione del database
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Configurazione dei servizi
 builder.Services.AddTransient<IAuthService, AuthService>();
-builder.Services.AddTransient<ICreazioneService, CreazioneService>();
-builder.Services.AddTransient<IRicercheService, RicercheService>();
-builder.Services.AddTransient<IVisualizzaCreazioniService, VisualizzaCreazioniService>();
-builder.Services.AddTransient<IAddServiziAgg, AddServiziAgg>();
 
-// Configurazione autenticazione
+// Configure authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.LoginPath = "/Auth/Login";
-        options.LogoutPath = "/Auth/Logout";
+        options.AccessDeniedPath = "/Auth/AccessDenied";
     });
-
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configura la pipeline delle richieste HTTP
+// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

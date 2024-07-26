@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Project.Controllers
+namespace HotelManagement.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,8 +20,7 @@ namespace Project.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult Management()
+        public IActionResult Privacy()
         {
             return View();
         }

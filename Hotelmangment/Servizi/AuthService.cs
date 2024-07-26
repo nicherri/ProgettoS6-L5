@@ -1,4 +1,4 @@
-﻿using Project.Services.Auth;
+﻿using Hotelmangment.Services.Auth;
 using System.Data.SqlClient;
 
 public class AuthService : ServizioBase, IAuthService
@@ -63,5 +63,10 @@ public class AuthService : ServizioBase, IAuthService
             _logger.LogError(ex, "Errore durante la registrazione.");
             throw;
         }
+    }
+
+    public Task<Utente> RegisterAsync(string username, string password)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Hotelmangment.Models.Auth;
+using Hotelmangment.Services.Auth;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Project.Models.Auth;
-using Project.Services.Auth;
 using System.Security.Claims;
 
-namespace Project.Controllers
+namespace Hotelmangment.Controllers
 {
     public class AuthController : Controller
     {
@@ -20,6 +20,7 @@ namespace Project.Controllers
 
         public IActionResult Register()
         {
+            ViewData["Title"] = "Register";
             return View();
         }
 
@@ -29,21 +30,24 @@ namespace Project.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewData["Title"] = "Register";
                 return View(model);
             }
 
             try
             {
-                var user = await _authService.RegisterAsync(new Utente { Username = model.Username, Password = model.Password });
+                var user = await _authService.RegisterAsync(model.Username, model.Password);
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "Registration failed.");
+                    ViewData["Title"] = "Register";
                     return View(model);
                 }
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Username)
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim("UserId", user.IdUtente.ToString())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -55,12 +59,14 @@ namespace Project.Controllers
             {
                 _logger.LogError(ex, "Registration failed.");
                 ModelState.AddModelError(string.Empty, "An error occurred while processing your request.");
+                ViewData["Title"] = "Register";
                 return View(model);
             }
         }
 
         public IActionResult Login()
         {
+            ViewData["Title"] = "Login";
             return View();
         }
 
@@ -70,6 +76,7 @@ namespace Project.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewData["Title"] = "Login";
                 return View(model);
             }
 
@@ -79,6 +86,7 @@ namespace Project.Controllers
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ViewData["Title"] = "Login";
                     return View(model);
                 }
 
@@ -97,6 +105,7 @@ namespace Project.Controllers
             {
                 _logger.LogError(ex, "Error during login");
                 ModelState.AddModelError(string.Empty, "An error occurred. Please try again.");
+                ViewData["Title"] = "Login";
                 return View(model);
             }
         }

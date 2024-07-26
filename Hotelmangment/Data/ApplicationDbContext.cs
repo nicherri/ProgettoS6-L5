@@ -1,7 +1,7 @@
-﻿using Hotel.Models; // Assicurati che il namespace sia corretto e punti alle tue entità
+﻿using Hotel.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hotel.Data // Assicurati che il namespace sia corretto e corrisponda alla struttura del tuo progetto
+namespace Hotelmangment.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -9,15 +9,12 @@ namespace Hotel.Data // Assicurati che il namespace sia corretto e corrisponda a
         {
         }
 
+        public DbSet<Utente> Utenti { get; set; }
         public DbSet<Cliente> Clienti { get; set; }
-        public DbSet<Camera> Camere { get; set; }
         public DbSet<Prenotazione> Prenotazioni { get; set; }
-        // Aggiungi DbSet per le altre entità se necessario
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            // Configurazioni aggiuntive se necessarie
-        }
+        public DbSet<Camera> Camere { get; set; }
+        public DbSet<DettagliSoggiorno> DettagliSoggiorni { get; set; }
+        public DbSet<TipologiaCamera> TipologieCamere { get; set; }
+        public DbSet<PrenotazioneServizi> PrenotazioneServizi { get; set; }
     }
 }
